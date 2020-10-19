@@ -14,7 +14,14 @@ class Graph {
   Graph() {
   }
 
+  auto updateVertex(int vertexId, T data) {
+    vertices[vertexId]->data = data;
+    return vertices[vertexId];
+  }
+
   void AddVertex(int vId, T value) {
+    if (vertices[vId])
+      return;
     vertices[vId] = new Vertex(vId, value);
   };
 
