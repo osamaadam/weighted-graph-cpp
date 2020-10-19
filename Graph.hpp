@@ -25,9 +25,15 @@ class Graph {
 
   void printGraph() {
     for (const auto& vertex: vertices) {
-      for (const auto& edge: vertex.second->GetEdges()) {
-        std::cout << vertex.first << ": " << edge->GetDestID() << "\n";
+      std::string edges = "";
+      const auto& vertexEdges = vertex.second->GetEdges();
+      for (auto edgeIndex = 0; edgeIndex < (int)vertexEdges.size(); edgeIndex++) {
+        if (edgeIndex == 0)
+          edges += std::to_string(vertexEdges[edgeIndex]->GetDestID());
+        else
+          edges += ", " + std::to_string(vertexEdges[edgeIndex]->GetDestID());
       }
+      std::cout << vertex.first << ": " << edges << "\n";
     }
   }
 
@@ -39,7 +45,7 @@ class Graph {
     return ids;
   };
 
-  std::vector<int> DijkstraSPF(int start_id) const;
+  std::map<int, double> DijkstraSPF(int start_id) const;
 
  private:
   class Vertex;
