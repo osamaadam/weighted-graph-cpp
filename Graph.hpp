@@ -11,6 +11,11 @@ class Graph {
   Graph() {
   }
 
+  Vertex* updateVertex(int vertexId, T data) {
+    vertices[vertexId]->data = data;
+    return vertices[vertexId];
+  }
+
   void AddVertex(int vId, T value) {
     vertices[vId] = new Vertex(vId, value);
   };
